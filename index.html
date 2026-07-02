@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Курьерская доставка — демо-лендинг</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f6f6f6;
+            color: #111;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .header {
+            background: #fff;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 900;
+        }
+
+        .logo span {
+            background: #ffd400;
+            padding: 8px 12px;
+            border-radius: 14px;
+        }
+
+        .nav {
+            display: flex;
+            gap: 18px;
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .nav a:hover {
+            color: #e60000;
+        }
+
+        .hero {
+            padding: 70px 8%;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 40px;
+            align-items: center;
+            background: linear-gradient(135deg, #ffd400 0%, #ffea75 55%, #fff 100%);
+        }
+
+        .hero-text h1 {
+            font-size: 58px;
+            line-height: 1.05;
+            margin-bottom: 20px;
+        }
+
+        .hero-text p {
+            font-size: 20px;
+            line-height: 1.5;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .btn {
+            padding: 15px 24px;
+            border-radius: 16px;
+            font-weight: 800;
+            display: inline-block;
+            transition: 0.2s;
+        }
+
+        .btn-black {
+            background: #111;
+            color: white;
+        }
+
+        .btn-white {
+            background: white;
+            color: #111;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 22px rgba(0,0,0,0.15);
+        }
+
+        .hero-card {
+            background: white;
+            border-radius: 34px;
+            padding: 18px;
+            box-shadow: 0 24px 60px rgba(0,0,0,0.18);
+        }
+
+        .hero-card img {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            border-radius: 26px;
+        }
+
+        .section {
+            padding: 70px 8%;
+        }
+
+        .section-title {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .section-subtitle {
+            color: #555;
+            font-size: 18px;
+            margin-bottom: 35px;
+            max-width: 720px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 28px;
+            padding: 28px;
+            box-shadow: 0 10px 28px rgba(0,0,0,0.07);
+            transition: 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-icon {
+            width: 62px;
+            height: 62px;
+            border-radius: 18px;
+            background: #ffd400;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .wide-block {
+            background: #111;
+            color: white;
+            border-radius: 34px;
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+            align-items: center;
+        }
+
+        .wide-block img {
+            width: 100%;
+            height: 360px;
+            object-fit: cover;
+            border-radius: 26px;
+        }
+
+        .wide-block h2 {
+            font-size: 38px;
+            margin-bottom: 18px;
+        }
+
+        .wide-block p {
+            color: #ddd;
+            font-size: 18px;
+            line-height: 1.5;
+            margin-bottom: 22px;
+        }
+
+        .yellow-text {
+            color: #ffd400;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .step {
+            background: white;
+            border-radius: 24px;
+            padding: 24px;
+            border: 2px solid #eee;
+        }
+
+        .step-number {
+            background: #ffd400;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 900;
+            margin-bottom: 15px;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .link-card {
+            background: #fff;
+            border-radius: 24px;
+            padding: 24px;
+            border: 2px solid transparent;
+            transition: 0.2s;
+        }
+
+        .link-card:hover {
+            border-color: #ffd400;
+            transform: translateY(-4px);
+        }
+
+        .link-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .link-card p {
+            color: #555;
+            margin-bottom: 18px;
+            line-height: 1.4;
+        }
+
+        .small-btn {
+            background: #ffd400;
+            padding: 11px 16px;
+            border-radius: 14px;
+            font-weight: 800;
+            display: inline-block;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 18px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            border-radius: 28px;
+        }
+
+        .footer {
+            background: #111;
+            color: white;
+            padding: 35px 8%;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer p {
+            color: #aaa;
+            max-width: 700px;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-text h1 {
+                font-size: 42px;
+            }
+
+            .cards,
+            .steps,
+            .links-grid,
+            .gallery,
+            .wide-block {
+                grid-template-columns: 1fr;
+            }
+
+            .nav {
+                display: none;
+            }
+
+            .hero-card img,
+            .wide-block img {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="logo"><span>Я</span> Доставка</div>
+
+    <nav class="nav">
+        <a href="#about">О сервисе</a>
+        <a href="#courier">Курьерам</a>
+        <a href="#links">Ссылки</a>
+        <a href="#start">Начать</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-text">
+        <h1>Доставка, которая двигается быстро</h1>
+        <p>
+            Курьерская доставка по городу, удобная подработка и заказы рядом.
+            Страница сделана как рекламный демо-лендинг в жёлто-чёрном стиле доставки.
+        </p>
+
+        <div class="buttons">
+            <a class="btn btn-black" href="https://dostavka.yandex.ru/for-courier/" target="_blank">
+                Стать курьером
+            </a>
+            <a class="btn btn-white" href="https://dostavka.yandex.ru/" target="_blank">
+                Заказать доставку
+            </a>
+        </div>
+    </div>
+
+    <div class="hero-card">
+        <img src="https://images.unsplash.com/photo-1526367790999-0150786686a2?auto=format&fit=crop&w=1200&q=80" alt="Курьер с доставкой">
+    </div>
+</section>
+
+<section class="section" id="about">
+    <h2 class="section-title">Почему это удобно</h2>
+    <p class="section-subtitle">
+        Сайт показывает основные преимущества доставки: скорость, понятный маршрут, разные способы передвижения и быстрый старт для курьеров.
+    </p>
+
+    <div class="cards">
+        <div class="card">
+            <div class="card-icon">⚡</div>
+            <h3>Быстро</h3>
+            <p>Курьер забирает заказ и доставляет его по маршруту без лишней путаницы.</p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">📍</div>
+            <h3>Рядом</h3>
+            <p>Заказы можно получать в своём районе, а маршрут строится через приложение.</p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">🕒</div>
+            <h3>Гибко</h3>
+            <p>Можно работать как подработка или выходить чаще — зависит от твоего графика.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="courier">
+    <div class="wide-block">
+        <div>
+            <h2>Хочешь работать курьером?</h2>
+            <p>
+                Для старта обычно нужен телефон с интернетом, документы и подходящий способ передвижения:
+                пешком, велосипед, самокат, авто или мото.
+            </p>
+
+            <a class="btn btn-white" href="https://pro.yandex.ru/ru-ru/bor/start?job=eats-courier" target="_blank">
+                Оставить заявку
+            </a>
+        </div>
+
+        <img src="https://images.unsplash.com/photo-1617347454431-f49d7ff5c3b1?auto=format&fit=crop&w=1200&q=80" alt="Курьер на улице">
+    </div>
+</section>
+
+<section class="section" id="start">
+    <h2 class="section-title">Как начать</h2>
+    <p class="section-subtitle">
+        Простой путь для человека, который хочет подключиться к доставке.
+    </p>
+
+    <div class="steps">
+        <div class="step">
+            <div class="step-number">1</div>
+            <h3>Перейди по ссылке</h3>
+            <p>Открой официальную страницу для курьеров.</p>
+        </div>
+
+        <div class="step">
+            <div class="step-number">2</div>
+            <h3>Заполни анкету</h3>
+            <p>Укажи город, телефон и способ доставки.</p>
+        </div>
+
+        <div class="step">
+            <div class="step-number">3</div>
+            <h3>Пройди оформление</h3>
+            <p>Подготовь документы и установи приложение.</p>
+        </div>
+
+        <div class="step">
+            <div class="step-number">4</div>
+            <h3>Выходи на линию</h3>
+            <p>Получай заказы и доставляй их по маршруту.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="links">
+    <h2 class="section-title">Полезные ссылки</h2>
+    <p class="section-subtitle">
+        Кнопки ведут на официальные страницы сервисов и приложений.
+    </p>
+
+    <div class="links-grid">
+        <div class="link-card">
+            <h3>Курьер Яндекс Доставки</h3>
+            <p>Страница для тех, кто хочет работать курьером через партнёров Яндекс Доставки.</p>
+            <a class="small-btn" href="https://dostavka.yandex.ru/for-courier/" target="_blank">Перейти</a>
+        </div>
+
+        <div class="link-card">
+            <h3>Курьер Яндекс Еды</h3>
+            <p>Страница для подключения к доставке еды через партнёров сервиса.</p>
+            <a class="small-btn" href="https://eda.yandex.ru/partner/rabota" target="_blank">Перейти</a>
+        </div>
+
+        <div class="link-card">
+            <h3>Яндекс Про</h3>
+            <p>Приложение для водителей и курьеров, через которое можно получать заказы.</p>
+            <a class="small-btn" href="https://pro.yandex.ru/ru-ru/bor/start?job=eats-courier" target="_blank">Перейти</a>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <h2 class="section-title">Галерея</h2>
+    <p class="section-subtitle">
+        Несколько картинок для рекламного ощущения: город, доставка, телефон и движение.
+    </p>
+
+    <div class="gallery">
+        <img src="https://images.unsplash.com/photo-1604357209793-fca5dca89f97?auto=format&fit=crop&w=900&q=80" alt="Доставка еды">
+        <img src="https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?auto=format&fit=crop&w=900&q=80" alt="Телефон и заказ">
+        <img src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=900&q=80" alt="Городская доставка">
+    </div>
+</section>
+
+<footer class="footer">
+    <div>
+        <h2>Демо-лендинг доставки</h2>
+        <p>
+            Это учебная страница, сделанная для локального сервера. Она не является официальным сайтом Яндекса.
+            Для настоящей рекламы используй официальные материалы, правила бренда и легальные ссылки.
+        </p>
+    </div>
+
+    <div>
+        <p>© 2026 Демо-сайт</p>
+    </div>
+</footer>
+
+</body>
+</html>
