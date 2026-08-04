@@ -1,0 +1,62 @@
+import turtle
+import time
+import random
+
+class World:
+    def __init__(self):
+        self.shary = []
+
+    def render_frame(self):
+        turtle.clear()
+        for shar in self.shary:
+            shar.move()
+            shar.render()
+    
+    def get_random_color(self):
+        """Метод не принимает ничего. 
+        Он просто рандомит корректную строку. Для того чтобы использовать её как HEX код цвета"""
+        return '#50eeff'
+
+    def generate_shary(self, n):
+        colors = ['red', '#50ee00', 'green', 'yellow']
+        for i in range(n):
+            self.shary.append(Shar(random.randint(-400, 400), -400, random.randint(1, 21) * 0.1, random.choice(colors), random.randint(50, 100)))
+
+
+class Shar:
+    def __init__(self, start_x, start_y, speed, color, radius):
+        self.start_x = start_x
+        self.start_y = start_y
+        self.x = start_x
+        self.y = start_y
+        self.speed = speed
+        self.color = color
+        self.radius = radius
+
+    def move(self):
+        self.y += self.speed
+
+    def render(self):
+        turtle.up()
+        turtle.color(self.color)
+        turtle.goto(self.x, self.y)
+        turtle.down()
+        turtle.begin_fill()
+        turtle.circle(self.radius)
+        turtle.end_fill()
+
+
+
+a = Shar(-100, -400, 0.05, 'blue', 80)
+world = World()
+world.generate_shary(10)
+
+
+
+while True:
+    turtle.tracer(0)
+    turtle.hideturtle()
+    world.render_frame()
+    time.sleep(0.01)
+    turtle.tracer(1)
+    print(a.x)
